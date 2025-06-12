@@ -29,6 +29,7 @@ function Login() {
       }
 
       localStorage.setItem("token", data.token);
+      localStorage.setItem("userEmail", form.email);
       navigate("/characters");
     } catch (err) {
       setError("Server error");

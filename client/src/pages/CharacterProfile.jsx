@@ -35,10 +35,13 @@ function CharacterProfile() {
   }, [feedback]);
 
   const saveToFavorites = () => {
-    const existing = JSON.parse(localStorage.getItem("favourites")) || [];
+    const userEmail = localStorage.getItem("userEmail");
+    const key = `favourites_${userEmail}`;
+    const existing = JSON.parse(localStorage.getItem(key)) || [];
+
     const alreadySaved = existing.find((c) => c.id === character.id);
     if (!alreadySaved) {
-      localStorage.setItem("favourites", JSON.stringify([...existing, character]));
+      localStorage.setItem(key, JSON.stringify([...existing, character]));
       setIsSaved(true);
       setFeedback("Character saved to favourites!");
     } else {
