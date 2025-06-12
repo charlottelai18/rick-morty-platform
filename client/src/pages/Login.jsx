@@ -37,21 +37,49 @@ function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md w-80">
-        <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
-        <input name="email" onChange={handleChange} value={form.email} className="w-full p-2 mb-4 border rounded" placeholder="Email" />
-        <input name="password" onChange={handleChange} value={form.password} className="w-full p-2 mb-4 border rounded" type="password" placeholder="Password" />
-        <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Login</button>
-        {error && <p className="text-red-500 mt-2 text-sm">{error}</p>}
-
-        <p className="mt-4 text-sm text-center">
-          Don’t have an account?{" "}
-          <Link to="/registration" className="text-blue-500 hover:underline">
-            Register here
-          </Link>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100">
+      <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-md">
+        <h1 className="text-3xl font-bold text-center mb-2">Welcome Back 👋</h1>
+        <p className="text-gray-500 text-center mb-6 text-sm">
+          Please enter your details to log in
         </p>
-      </form>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            name="email"
+            type="email"
+            value={form.email}
+            onChange={handleChange}
+            placeholder="Email"
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+          />
+          <input
+            name="password"
+            type="password"
+            value={form.password}
+            onChange={handleChange}
+            placeholder="Password"
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+          />
+          <button
+            type="submit"
+            className="w-full bg-purple-500 text-white py-2 rounded-lg hover:bg-purple-600 transition"
+          >
+            Login
+          </button>
+
+          {error && (
+            <p className="text-sm text-red-500 text-center mt-2">{error}</p>
+          )}
+
+          <p className="text-sm text-center mt-4">
+            Don’t have an account?{" "}
+            <Link to="/registration" className="text-purple-500 hover:underline">
+              Register
+            </Link>
+          </p>
+        </form>
+      </div>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 function Register() {
@@ -37,48 +37,55 @@ function Register() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md w-80">
-        <h2 className="text-2xl font-bold mb-4 text-center">Register</h2>
-
-        <input
-          name="name"
-          onChange={handleChange}
-          value={form.name}
-          className="w-full p-2 mb-4 border rounded"
-          placeholder="Name"
-        />
-        <input
-          name="email"
-          onChange={handleChange}
-          value={form.email}
-          className="w-full p-2 mb-4 border rounded"
-          type="email"
-          placeholder="Email"
-        />
-        <input
-          name="password"
-          onChange={handleChange}
-          value={form.password}
-          className="w-full p-2 mb-4 border rounded"
-          type="password"
-          placeholder="Password"
-        />
-
-        <button type="submit" className="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600">
-          Register
-        </button>
-
-        {error && <p className="text-red-500 mt-2 text-sm text-center">{error}</p>}
-        {successMessage && <p className="text-green-600 mt-2 text-sm text-center">{successMessage}</p>}
-
-        <p className="mt-4 text-sm text-center">
-          Already have an account?{" "}
-          <Link to="/" className="text-blue-500 hover:underline">
-            Login here
-          </Link>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-100 via-indigo-100 to-purple-100">
+      <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-md">
+        <h1 className="text-3xl font-bold text-center mb-2">Create an Account 🚀</h1>
+        <p className="text-gray-500 text-center mb-6 text-sm">
+          Join us and explore the multiverse!
         </p>
-      </form>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            name="name"
+            placeholder="Name"
+            value={form.name}
+            onChange={handleChange}
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+          />
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            value={form.email}
+            onChange={handleChange}
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+          />
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={form.password}
+            onChange={handleChange}
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+          />
+          <button
+            type="submit"
+            className="w-full bg-purple-500 text-white py-2 rounded-lg hover:bg-purple-600 transition"
+          >
+            Register
+          </button>
+
+          {error && <p className="text-sm text-red-500 text-center">{error}</p>}
+          {successMessage && <p className="text-sm text-green-600 text-center">{successMessage}</p>}
+
+          <p className="text-sm text-center mt-4">
+            Already have an account?{" "}
+            <Link to="/" className="text-purple-500 hover:underline">
+              Login here
+            </Link>
+          </p>
+        </form>
+      </div>
     </div>
   );
 }
