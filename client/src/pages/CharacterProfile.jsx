@@ -19,14 +19,14 @@ function CharacterProfile() {
       .catch((err) => console.error("Failed to load character", err));
   }, [id, navigate]);
 
-  const saveToFavorites = () => {
-    const existing = JSON.parse(localStorage.getItem("favorites")) || [];
+  const saveToFavourites = () => {
+    const existing = JSON.parse(localStorage.getItem("favourites")) || [];
     const alreadySaved = existing.find((c) => c.id === character.id);
     if (!alreadySaved) {
-      localStorage.setItem("favorites", JSON.stringify([...existing, character]));
-      alert("Character saved to favorites!");
+      localStorage.setItem("favourites", JSON.stringify([...existing, character]));
+      alert("Character saved to favourites!");
     } else {
-      alert("Character already in favorites.");
+      alert("Character already in favourites.");
     }
   };
 
@@ -64,10 +64,10 @@ function CharacterProfile() {
           })}
         </ul>
         <button
-          onClick={saveToFavorites}
+          onClick={saveToFavourites}
           className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600"
         >
-          Save to Favorites
+          Save to Favourites
         </button>
       </div>
     </div>
