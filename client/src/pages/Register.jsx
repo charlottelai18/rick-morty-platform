@@ -2,39 +2,42 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 function Register() {
-  const navigate = useNavigate();
-  const [form, setForm] = useState({ name: "", email: "", password: "" });
-  const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+    const navigate = useNavigate();
+    const [form, setForm] = useState({ name: "", email: "", password: "" });
+    const [error, setError] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+    const handleChange = (e) => {
+        setForm({ ...form, [e.target.name]: e.target.value });
+    };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    setSuccessMessage("");
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError("");
+        setSuccessMessage("");
 
-    try {
-      const res = await fetch("http://localhost:5050/api/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+        try {
+        const res = await fetch("http://localhost:5050/api/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(form),
+        });
 
-      if (!res.ok) {
-        const data = await res.json();
-        setError(data.message || "Registration failed");
-        return;
-      }
+        if (!res.ok) {
+            const data = await res.json();
+            setError(data.message || "Registration failed");
+            return;
+        }
 
-      setSuccessMessage("Registration successful! Redirecting to login...");
-      setTimeout(() => navigate("/"), 1000);
-    } catch (err) {
-      setError("Server error");
-    }
-  };
+        localStorage.setItem("userName", form.name);
+        localStorage.setItem("userEmail", form.email);
+        
+        setSuccessMessage("Registration successful! Redirecting to login...");
+        setTimeout(() => navigate("/"), 1000);
+        } catch (err) {
+        setError("Server error");
+        }
+    };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-100 via-indigo-100 to-purple-100">

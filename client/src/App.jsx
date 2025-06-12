@@ -4,6 +4,7 @@ import Register from "./pages/Register";
 import Characters from "./pages/Characters";
 import CharacterProfile from "./pages/CharacterProfile";
 import Favourites from "./pages/Favourites";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path="/characters" element={<Characters />} />
       <Route path="/characters/:id" element={<CharacterProfile />} />
       <Route path="/user/characters" element={<Favourites />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   );
 }
