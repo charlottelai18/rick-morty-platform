@@ -1,24 +1,32 @@
+// CharacterProfile.jsx: Displays detailed view for a character and allows saving to favourites
+// Fetch character details on component mount and check if it's already saved
+// Save character to localStorage based on logged-in user
+
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 function CharacterProfile() {
-  const { id } = useParams();
+  const { id } = useParams(); // Get character ID from URL params
   const navigate = useNavigate();
-  const [character, setCharacter] = useState(null);
-  const [isSaved, setIsSaved] = useState(false);
-  const [feedback, setFeedback] = useState("");
+  const [character, setCharacter] = useState(null); // Holds fetched character details
+  const [isSaved, setIsSaved] = useState(false); // Track if character is already favourited
+  const [feedback, setFeedback] = useState(""); // Store feedback message
 
   useEffect(() => {
+    // Redirect to login if user is unauthenticated
     const token = localStorage.getItem("token");
     if (!token) {
       navigate("/");
       return;
     }
 
+    // Fetch character details using ID
     fetch(`https://rickandmortyapi.com/api/character/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setCharacter(data);
+
+        // Check if character is already in global favourites (fallback logic)
         const saved = JSON.parse(localStorage.getItem("favourites")) || [];
         const alreadySaved = saved.find((c) => c.id === data.id);
         setIsSaved(!!alreadySaved);
@@ -26,6 +34,7 @@ function CharacterProfile() {
       .catch((err) => console.error("Failed to load character", err));
   }, [id, navigate]);
 
+  // Auto-clear feedback messages after 3 seconds
   useEffect(() => {
     if (feedback) {
       const timeout = setTimeout(() => setFeedback(""), 3000);
@@ -33,6 +42,7 @@ function CharacterProfile() {
     }
   }, [feedback]);
 
+  // Save character to favourites under user's email-specific key
   const saveToFavorites = () => {
     const userEmail = localStorage.getItem("userEmail");
     const key = `favourites_${userEmail}`;
@@ -48,6 +58,7 @@ function CharacterProfile() {
     }
   };
 
+  // Loading state UI
   if (!character) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100">
@@ -61,6 +72,7 @@ function CharacterProfile() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 p-6">
+      {/* Back navigation */}
       <button
         onClick={() => navigate("/characters")}
         className="mb-6 text-blue-600 hover:underline"
@@ -68,6 +80,7 @@ function CharacterProfile() {
         ← Back to Characters
       </button>
 
+      {/* Character profile card */}
       <div className="bg-white p-8 rounded-xl shadow-lg max-w-xl mx-auto text-center">
         <img
           src={character.image}
@@ -78,6 +91,7 @@ function CharacterProfile() {
         <p className="text-gray-600 mb-1">Species: {character.species}</p>
         <p className="text-gray-600 mb-6">Gender: {character.gender}</p>
 
+        {/* Episode list */}
         <p className="font-semibold mb-2 text-gray-700">Episodes:</p>
         <ul className="text-sm text-gray-500 mb-6">
           {character.episode.slice(0, 5).map((epUrl, index) => {
@@ -86,6 +100,7 @@ function CharacterProfile() {
           })}
         </ul>
 
+        {/* Save to Favourites button */}
         <button
           onClick={saveToFavorites}
           disabled={isSaved}
@@ -98,6 +113,7 @@ function CharacterProfile() {
           {isSaved ? "Saved to Favourites" : "Save to Favourites"}
         </button>
 
+        {/* Feedback message */}
         {feedback && (
           <p className="mt-4 text-sm text-gray-700">{feedback}</p>
         )}
@@ -107,4 +123,3 @@ function CharacterProfile() {
 }
 
 export default CharacterProfile;
-
