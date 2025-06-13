@@ -108,3 +108,23 @@ Environment variable JWT_SECRET is securely configured on Render
     *Backend: Express.js, Node.js, JWT
     *Deployment: Netlify (frontend) & Render (backend)
     *External API: Rick and Morty API
+
+## Demo
+
+### Login Page
+![Login Page](./client/public/images/login.png)
+
+### Register Page
+![Register Page](./client/public/images/characters.png)
+
+### Character Grid
+![Characters](./client/public/images/register.png)
+
+### Character Profile
+![Character Profile](./client/public/images/characterprofile.png)
+
+### Favrouites Page
+![Favourites](./client/public/images/favourites.png)
+
+### Profile
+![Profile](./client/public/images/profile.png)
