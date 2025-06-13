@@ -26,7 +26,7 @@ function Register() {
 
         try {
             // Send POST request to backend to register user
-            const res = await fetch("http://localhost:5050/api/register", {
+            const res = await fetch("https://rick-morty-platform.onrender.com/api/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(form),
