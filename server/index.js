@@ -9,7 +9,7 @@ require('dotenv').config();
 
 // Initialize Express app
 const app = express();
-const PORT = 5050;
+const PORT = process.env.PORT || 5050;
 
 // Middleware setup
 app.use(cors()); // Enable Cross-Origin Resource Sharing
