@@ -1,6 +1,4 @@
-# rick-morty-platform
-
-# Rick and Morty Character Explorer 
+# Rick and Morty App
 
 A full-stack web application that allows users to register, log in, explore Rick and Morty characters, and save their favourites. Built with React, Express, and the Rick and Morty API.
 
@@ -78,7 +76,7 @@ npm run dev
 
 ## ⚠️ Note on Free Hosting
 
-> 💥 The backend is hosted on Render's free tier, which may spin down after periods of inactivity.
+> The backend is hosted on Render's free tier, which may spin down after periods of inactivity.
 > The first login or register request may take **30–60 seconds** to respond as the server "wakes up."
 > All subsequent requests will be fast and responsive.
 
