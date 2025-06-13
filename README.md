@@ -74,7 +74,7 @@ npm run dev
 ## 🔗 Live Demo
 
 * Frontend (Netlify): [https://rickyandmortyproject.netlify.app/](https://rickyandmortyproject.netlify.app/)
-* Backend (Render): [https://rickyandmortyproject.netlify.app/](https://rickyandmortyproject.netlify.app/)
+* Backend (Render): [https://rick-morty-platform.onrender.com](https://rick-morty-platform.onrender.com)
 
 ## ⚠️ Note on Free Hosting
 
@@ -103,3 +103,10 @@ Frontend is deployed via **Netlify**, and the backend server is deployed using *
    * Start command: `node index.js`
 
 Environment variable JWT_SECRET is securely configured on Render
+
+## Technologies Used
+
+    *Frontend: React, Vite, Tailwind CSS, React Router
+    *Backend: Express.js, Node.js, JWT
+    *Deployment: Netlify (frontend) & Render (backend)
+    *External API: Rick and Morty API
